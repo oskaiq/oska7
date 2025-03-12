@@ -10,35 +10,41 @@
     .scrollmenu { white-space: nowrap; overflow-x: auto; }
     .scrollmenu article { width:110px; height: 180px; display: inline-block; color: white; text-align: center; text-decoration: none; overflow: hidden; border:3px solid #000; border-radius:9px; cursor: pointer; }
     .player-container { max-width: 900px; margin: 20px auto; background: black; padding: 10px; border-radius: 10px; }
-    #megaplay { width: 100%!important; height: 500px!important; }
+    #xpola-player { width: 100%!important; height: 500px!important; }
 </style>
 </head>
 <body>
 
 <h1>مشغل القنوات الرياضية</h1>
 <div class="player-container">
-    <video id="megaplay" controls autoplay style="width: 100%; height: 500px; background: black;">
-        <source src="https://list.iptvcat.com/my_list/s/d6e70f81cde19fd3341abec28756b59b.m3u8" type="application/x-mpegURL">
-        متصفحك لا يدعم تشغيل الفيديو.
-    </video>
+    <div id="xpola-player"></div>
 </div>
 
 <div class="scrollmenu">
-    <article onclick="changeStream('https://list.iptvcat.com/my_list/s/d6e70f81cde19fd3341abec28756b59b.m3u8')">
+    <article onclick="changeStream('http://ugeen.live:8080/get.php?username=Ugeen_VIP8Z9E57&password=jueFRN&type=m3u_plus&output=hls&lang=en&view_category=yes')">
         <img src="https://c.top4top.io/p_3188nar1e5.jpg" alt="ON SPORT">
         <h3>ON SPORT</h3>
     </article>
-    <article onclick="changeStream('https://list.iptvcat.com/my_list/s/d6e70f81cde19fd3341abec28756b59b.m3u8')">
+    <article onclick="changeStream('http://ugeen.live:8080/get.php?username=Ugeen_VIP8Z9E57&password=jueFRN&type=m3u_plus&output=hls&lang=en&view_category=yes')">
         <img src="https://d.top4top.io/p_3188tjos36.jpg" alt="ALKASS">
         <h3>ALKASS</h3>
     </article>
 </div>
 
+<!-- Xpola Player -->
+<script src="https://cdn.xpola.com/player.js"></script>
 <script>
+    var player = new XpolaPlayer({
+        container: "xpola-player",
+        file: "http://ugeen.live:8080/get.php?username=Ugeen_VIP8Z9E57&password=jueFRN&type=m3u_plus&output=hls&lang=en&view_category=yes",
+        type: "application/x-mpegURL",
+        autoplay: true,
+        controls: true
+    });
+
     function changeStream(url) {
-        var video = document.getElementById("megaplay");
-        video.src = url;
-        video.play();
+        player.load({ file: url, type: "application/x-mpegURL" });
+        player.play();
     }
 </script>
 </body>
